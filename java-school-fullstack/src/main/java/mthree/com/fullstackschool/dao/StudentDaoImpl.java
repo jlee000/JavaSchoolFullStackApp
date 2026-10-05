@@ -28,7 +28,7 @@ public class StudentDaoImpl implements StudentDao {
     @Transactional
     public Student createNewStudent(Student student) {
         //YOUR CODE STARTS HERE
-        final String sql = "INSERT INTO student(sid, fName, lName) VALUES(?,?,?);";
+        final String sql = "INSERT INTO student(fName, lName) VALUES(?,?);";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update((Connection conn) -> {
@@ -36,9 +36,8 @@ public class StudentDaoImpl implements StudentDao {
                 sql, 
                 Statement.RETURN_GENERATED_KEYS);
 
-            statement.setInt(1, student.getStudentId());
-            statement.setString(2, student.getStudentFirstName());
-            statement.setString(3, student.getStudentLastName());
+            statement.setString(1, student.getStudentFirstName());
+            statement.setString(2, student.getStudentLastName());
             return statement;
 
         }, keyHolder);

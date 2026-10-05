@@ -16,7 +16,6 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
     public TeacherServiceImpl(TeacherDao teacherDao){
         this.teacherDao = teacherDao;
     }
-
     //YOUR CODE ENDS HERE
 
     public List<Teacher> getAllTeachers() {

@@ -24,7 +24,7 @@ public class TeacherDaoImpl implements TeacherDao {
     @Override
     public Teacher createNewTeacher(Teacher teacher) {
         //YOUR CODE STARTS HERE
-        final String sql = "INSERT INTO teacher(tid, tFName, tLName, dept) VALUES(?,?,?,?);";
+        final String sql = "INSERT INTO teacher(tFName, tLName, dept) VALUES(?,?,?);";
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update((Connection conn) -> {
@@ -32,10 +32,9 @@ public class TeacherDaoImpl implements TeacherDao {
                 sql, 
                 Statement.RETURN_GENERATED_KEYS);
 
-            statement.setInt(1, teacher.getTeacherId());
-            statement.setString(2, teacher.getTeacherFName());
-            statement.setString(3, teacher.getTeacherLName());
-            statement.setString(4, teacher.getDept());
+            statement.setString(1, teacher.getTeacherFName());
+            statement.setString(2, teacher.getTeacherLName());
+            statement.setString(3, teacher.getDept());
             return statement;
 
         }, keyHolder);
